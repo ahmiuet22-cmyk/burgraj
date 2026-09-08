@@ -1,0 +1,123 @@
+/* Burger Garage - Design System & Global Variables */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Brand Colors */
+  --brand-red: #ED1C24;
+  --primary: #FF5E3A;
+  --primary-hover: #E54C28;
+  --primary-glow: rgba(255, 94, 58, 0.35);
+  --primary-light: #FFF0EC;
+  --primary-subtle: #FFF8F5;
+  
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #FF5E3A 0%, #FF8A65 100%);
+  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+  --gradient-dark: linear-gradient(145deg, #222222 0%, #111111 100%);
+  --gradient-accent: linear-gradient(135deg, #FF8A65 0%, #FFB74D 100%);
+
+  /* Neutrals & Surfaces */
+  --dark: #1A1A1A;
+  --dark-soft: #2D2D2D;
+  --gray-body: #666666;
+  --gray-muted: #8E8E93;
+  --gray-border: #EEEEEE;
+  --gray-bg: #F8F9FA;
+  --surface-white: #FFFFFF;
+
+  /* State Badges */
+  --status-pending: #F39C12;
+  --status-preparing: #2980B9;
+  --status-delivery: #8E44AD;
+  --status-delivered: #27AE60;
+  --status-cancelled: #E74C3C;
+
+  /* Typography */
+  --font-brand: 'Bebas Neue', 'Anton', Impact, sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Elevations */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+  --shadow-primary: 0 10px 25px rgba(255, 94, 58, 0.3);
+  --shadow-primary-lg: 0 15px 35px rgba(255, 94, 58, 0.4);
+
+  /* Rounded Corners */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background-color: #FAFAFA;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0.5); }
+  70% { box-shadow: 0 0 0 16px rgba(255, 94, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0); }
+}
+
+@keyframes voiceWave {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); filter: drop-shadow(0 0 12px #27AE60); }
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
