@@ -21,9 +21,7 @@ class AppStore {
     this.selectedOutlet = this.load(this.outletKey, 'Rahwali');
     this.orders = this.load(this.ordersKey, []);
     this.user = this.load(this.userKey, null);
-    this.users = this.load(this.usersListKey, [
-      { name: 'Ali Khan', email: 'user@burgergarage.com', phone: '0300-1234567', password: 'password123' }
-    ]);
+    this.users = this.load(this.usersListKey, []);
     this.isLocationConfirmed = this.load(this.locConfirmedKey, false);
 
     this.listeners = [];

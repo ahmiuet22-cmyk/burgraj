@@ -1536,19 +1536,39 @@ _We will notify you as soon as our rider dispatches your meal! Hotline: 0300-BUR
         </div>
       `;
     } else {
-      const favProducts = MENU_DATA.products.filter(p => store.favorites.includes(p.id));
-      listContainer.innerHTML = favProducts.map(p => `
-        <div class="fav-item-row">
-          <img src="${p.image}" alt="${p.name}" class="fav-item-img" onerror="this.src='assets/logoo.jpg'">
-          <div class="fav-item-info">
-            <div class="fav-item-name">${p.name}</div>
-            <div class="fav-item-price">Rs ${p.price}</div>
+      const allProducts = (liveProducts && liveProducts.length > 0) ? liveProducts : (MENU_DATA.products || []);
+      const favProducts = allProducts.filter(p => store.favorites.includes(p.id) || store.favorites.includes(String(p.id)));
+
+      if (favProducts.length === 0) {
+        listContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: var(--gray-muted);">
+            <div style="font-size: 40px; margin-bottom: 10px;">🤍</div>
+            <h4 style="color: var(--dark); margin-bottom: 6px;">No Favorites Yet</h4>
+            <p style="font-size: 13px;">Tap the heart icon on any burger, pizza or drink to save it here!</p>
           </div>
-          <button class="btn-checkout" style="margin: 0; padding: 7px 14px; font-size: 13px;" onclick="closeFavoritesModal(); openDetailModal('${p.id}')">
-            Add to Cart +
-          </button>
-        </div>
-      `).join('');
+        `;
+      } else {
+        listContainer.innerHTML = favProducts.map(p => {
+          const displayPrice = p.price || (p.sizes ? Object.values(p.sizes)[0] : 0);
+          return `
+          <div class="fav-item-row">
+            <img src="${p.image || 'assets/logoo.jpg'}" alt="${p.name}" class="fav-item-img" onerror="this.src='assets/logoo.jpg'">
+            <div class="fav-item-info">
+              <div class="fav-item-name">${p.name}</div>
+              <div class="fav-item-price">Rs ${displayPrice}</div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="btn-checkout" style="margin: 0; padding: 7px 14px; font-size: 13px;" onclick="closeFavoritesModal(); openProductDetail('${p.id}')">
+                View & Order 🍔
+              </button>
+              <button class="fav-btn is-fav" style="width: 36px; height: 36px; font-size: 16px; border: 1px solid var(--gray-border); border-radius: 50%; background: #fff; cursor: pointer;" onclick="toggleWishlist('${p.id}', this); openFavoritesModal();" title="Remove from favorites">
+                ❌
+              </button>
+            </div>
+          </div>
+        `;
+        }).join('');
+      }
     }
 
     document.getElementById('favorites-modal-overlay').classList.add('active');
